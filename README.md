@@ -10,7 +10,7 @@ Used the [GSON Library](https://github.com/google/gson) to convert JSON objects 
 Used [Recyclerciew](https://developer.android.com/jetpack/androidx/releases/recyclerview)
 with [CardViews](https://developer.android.com/jetpack/androidx/releases/cardview) to display data.<br />
 
-API: Covid-19 API for America. [https://covidtracking.com/api]
+API: [Covid-19 API for America]. (https://covidtracking.com/api)
 
 ## 🚀 Development
 
