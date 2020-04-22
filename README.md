@@ -7,15 +7,14 @@ A COVID-19 Tracking Android Application to monitor the status of the pandemic in
 Created on [Android Studio](https://developer.android.com/studio) with [`Java`].(https://www.oracle.com/java/technologies/javase-downloads.html).  <br />
 Used the [Volley Library](https://developer.android.com/training/volley) to get JSON data<br />
 Used the [GSON Library](https://github.com/google/gson) to convert JSON objects to Java Objects.<br />
-Used [Recyclerciew](https://developer.android.com/jetpack/androidx/releases/recyclerview).<br />
-With [CardViews](https://developer.android.com/jetpack/androidx/releases/cardview) to display data.<br />
+Used [Recyclerciew](https://developer.android.com/jetpack/androidx/releases/recyclerview)
+with [CardViews](https://developer.android.com/jetpack/androidx/releases/cardview) to display data.<br />
 
-
+API: Covid-19 API for America. [https://covidtracking.com/api]
 
 ## 🚀 Development
 
 To get started:
-
 ```sh
 git clone https://github.com/FahadAdnan/CoronaVirusUSA.git
 Open up Andorid Studio and Start Development
