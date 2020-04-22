@@ -4,11 +4,11 @@ A COVID-19 Tracking Android Application to monitor the status of the pandemic in
 
 ## 🥞 Tech Stack
 
-Created on [Android Studio](https://developer.android.com/studio) with [`Java`](https://www.oracle.com/java/technologies/javase-downloads.html).  
-Used the [Volley Library](https://developer.android.com/training/volley) to get JSON data.
-Used the [GSON Library](https://github.com/google/gson) to convert JSON objects to Java Objects.
-Used [Recyclerciew](https://developer.android.com/jetpack/androidx/releases/recyclerview).
-With [CardViews](https://developer.android.com/jetpack/androidx/releases/cardview) to display data.
+Created on [Android Studio](https://developer.android.com/studio) with [`Java`].(https://www.oracle.com/java/technologies/javase-downloads.html).  <br />
+Used the [Volley Library](https://developer.android.com/training/volley) to get JSON data<br />
+Used the [GSON Library](https://github.com/google/gson) to convert JSON objects to Java Objects.<br />
+Used [Recyclerciew](https://developer.android.com/jetpack/androidx/releases/recyclerview).<br />
+With [CardViews](https://developer.android.com/jetpack/androidx/releases/cardview) to display data.<br />
 
 
 
