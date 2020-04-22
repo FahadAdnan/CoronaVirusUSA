@@ -2,7 +2,7 @@
 A COVID-19 Tracking Android Application to monitor the status of the pandemic in the hardest hit country, America. The data is retrieved from a frequently updated source and is displayed in a Recycler view.  
 
 
-## 🥞 Tech Stack
+### 🥞 Tech Stack
 
 Created on [Android Studio](https://developer.android.com/studio) with [Java](https://www.oracle.com/java/technologies/javase-downloads.html).  <br />
 Used the [Volley Library](https://developer.android.com/training/volley) to get JSON data<br />
@@ -12,7 +12,7 @@ with [CardViews](https://developer.android.com/jetpack/androidx/releases/cardvie
 
 API: [Covid-19 API for America](https://covidtracking.com/api).
 
-## 🚀 Development
+### 🚀 Development
 
 To get started:
 ```sh
@@ -21,7 +21,7 @@ Open up Andorid Studio and Start Development
 ```
 
 
-## ☕ Screenshots 
+### ☕ Screenshots 
 <p float="left">
  <img src="https://github.com/FahadAdnan/CoronaVirusUSA/blob/master/screenshots/search_screenshot.jpg" width="425" />
  <img src="https://github.com/FahadAdnan/CoronaVirusUSA/blob/master/screenshots/clicked_screenshot.jpg" width="425"/>
