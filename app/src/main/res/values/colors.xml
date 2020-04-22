@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F3F3F</color>
+    <color name="colorPrimaryDark">#1F1F1F</color>
+    <color name="colorAccent">#D3D3D3</color>
+
+    <color name="positiveGreen">#D3FFC1</color>
+    <color name="negativeRed">#FF8484</color>
+
+
+    <color name="mainActivityBackground">#0F0F0F</color>
+    <color name="backBackground">#575757</color>
+    <color name="frontBackground">#949494</color>
+
+    <color name="UpdateBtnColor">#F3F3F3</color>
+    <color name="StateTxtColor">#EBEBEB</color>
+
+
+    <color name="end_color">#090909</color>
+    <color name="gradient_color">#383838</color>
+
+
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <gradient
+                android:centerX="0.5"
+                android:centerY="0.5"
+                android:endColor="@color/end_color"
+                android:gradientRadius="200dp"
+                android:startColor="@color/gradient_color"
+                android:type="radial" />
+        </shape>
+    </item>
+
+    <item>
+        <bitmap android:src="@drawable/corona100"
+            android:gravity="center"
+            android:width="30dp"
+            android:height="30dp"  />
+    </item>
+
+
+</layer-list>
