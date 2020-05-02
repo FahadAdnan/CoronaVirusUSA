@@ -23,8 +23,8 @@ Open up Andorid Studio and Start Development
 
 ### ☕ Screenshots 
 <p float="left">
- <img src="https://github.com/FahadAdnan/CoronaVirusUSA/blob/master/screenshots/search_screenshot.jpg" width="425" />
- <img src="https://github.com/FahadAdnan/CoronaVirusUSA/blob/master/screenshots/clicked_screenshot.jpg" width="425"/>
+ <img src="https://github.com/FahadAdnan/CoronaVirusUSA/blob/master/screenshots/clicked_screenshot.jpg" width="425" />
+ <img src="https://github.com/FahadAdnan/CoronaVirusUSA/blob/master/screenshots/search_screenshot.jpg" width="425"/>
 </p>
 
 
