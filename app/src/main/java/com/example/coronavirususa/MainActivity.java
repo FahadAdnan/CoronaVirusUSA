@@ -6,15 +6,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -38,11 +37,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
-    public ArrayList<StateObj> stateList = new ArrayList<>();
-    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.2F);
 
+    public ArrayList<StateObj> stateList = new ArrayList<>();
+    public StateObj AllAmericanObj;
+
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.2F);
     private static final Map<String, String> stateConversion = initMap();
 
+
+    // Unmodifiable Map for converting State Abbreviations to State Name.
     private static Map<String, String> initMap() {
         Map<String, String> map = new HashMap<>();
         map.put("AL", "Alabama");        map.put("AK", "Alaska");    map.put("AZ", "Arizona");        map.put("AR", "Arkansas");
@@ -52,25 +55,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         map.put("KY", "Kentucky");       map.put("LA", "Louisiana"); map.put("ME", "Maine");          map.put("MD", "Maryland");
         map.put("MA", "Massachusetts");  map.put("MI", "Michigan");  map.put("MN", "Minnesota");      map.put("MO", "Missouri");
         map.put("MT", "Montana");        map.put("NE", "Nebraska");  map.put("NV", "Nevada");         map.put("NH", "New Hampshire");
-        map.put("NM", "New Mexico");     map.put("NY", "New York");  map.put("NC", "North Carolina"); map.put("ND", "North Dakota");
-        map.put("OH", "Ohio");           map.put("OK", "Oklahoma");  map.put("OR", "Oregon");         map.put("PA", "Pennsylvania");
-        map.put("RI", "Rhode Island");   map.put("SC", "South Carolina");  map.put("SD", "South Dakota");  map.put("TN", "Tennessee");
-        map.put("TX", "Texas");          map.put("UT", "Utah");      map.put("VT", "Vermont");               map.put("VA", "Virginia");
-        map.put("WA", "Washington");     map.put("WV", "West Virginia");  map.put("WI", "Wisconsin");        map.put("WY", "Wyoming");
-        map.put("DC", "District of Columbia");  map.put("MH", "Marshall Islands");  map.put("PR", "Pueto Rico");        map.put("AS", "American Somoa");
-        map.put("GU", "Guam");           map.put("MP", "Northern Marina Islanda");  map.put("VI", "US Virgin Islands");        map.put("Error", "error");
-        map.put("NJ", "New Jersey");
+        map.put("MS", "Mississippi");    map.put("NM", "New Mexico");     map.put("NY", "New York");  map.put("NC", "North Carolina");
+        map.put("ND", "North Dakota");   map.put("OH", "Ohio");           map.put("OK", "Oklahoma");  map.put("OR", "Oregon");
+        map.put("PA", "Pennsylvania");   map.put("RI", "Rhode Island");   map.put("SC", "South Carolina");  map.put("SD", "South Dakota");
+        map.put("TN", "Tennessee");      map.put("TX", "Texas");          map.put("UT", "Utah");      map.put("VT", "Vermont");
+        map.put("VA", "Virginia");       map.put("WA", "Washington");     map.put("WV", "West Virginia");  map.put("WI", "Wisconsin");
+        map.put("WY", "Wyoming");        map.put("DC", "District of Columbia");  map.put("MH", "Marshall Islands");  map.put("PR", "Pueto Rico");
+        map.put("AS", "American Somoa"); map.put("GU", "Guam");           map.put("MP", "Northern Marina Islanda");  map.put("VI", "US Virgin Islands");
+        map.put("Error", "error");       map.put("NJ", "New Jersey");
 
         return Collections.unmodifiableMap(map);
     }
-
-    //TO-DO
-    // 1) Initialize Hashmap with values for the different states _ error
-    // 2) Make hte recycler view cardviews expandable.
-
-    //Next Steps:
-    // 1) Add a search bar that you can search for your state
-    // 2) Add a notification option so you can set notifications for specific states
 
 
     @Override
@@ -78,7 +73,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-          fetchData();
+          fetchCountryData();
+          fetchStateData();
 
         recyclerView = findViewById(R.id.recyclerView);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
@@ -88,17 +84,28 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         Button button = (Button) findViewById(R.id.updateInfoBtn);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                fetchData();
+                fetchCountryData();
+                fetchStateData();
                 v.startAnimation(buttonClick);
                 Toast.makeText(MainActivity.this, "Updated Data",Toast.LENGTH_SHORT).show();
             }
         });
 
+        View cardview = (View) findViewById(R.id.mainCardView);
+        final View mainExpandableCardView = (View) findViewById(R.id.expandableInfoAmerica);
+        cardview.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(mainExpandableCardView.getVisibility() == View.GONE){
+                    mainExpandableCardView.setVisibility(View.VISIBLE);
+                }else{
+                    mainExpandableCardView.setVisibility(View.GONE);
+                }
+            }
+        });
 
     }
 
-
-
+    //Code for search bar for recycler view.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -121,10 +128,34 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
 
+    //#region Code using Volley to get JSON data for America - and its states.
+    public void fetchCountryData(){
+        String AmericaURL = "https://covidtracking.com/api/us";
+        RequestQueue allUSArequestqueue = Volley.newRequestQueue(this);
 
-    public void fetchData(){
+        JsonArrayRequest objectrequest = new JsonArrayRequest(
+                AmericaURL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.e("Rest Response", response.toString());
+                String jsonobj = response.toString();
+                generateAllUsaObj(jsonobj);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error", error.toString());
+            }
+        }
+        );
+        allUSArequestqueue.add(objectrequest);
+    }
+
+
+    public void fetchStateData(){
 
         String URL = "https://covidtracking.com/api/v1/states/current.json";
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonArrayRequest arrayRequest = new JsonArrayRequest(
                 URL, new Response.Listener<JSONArray>() {
@@ -143,8 +174,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         }
         );
         requestQueue.add(arrayRequest);
-    }
 
+    }
+    //#endregion
+
+    //#region Code using GSON to convert JSON Objects(string) to Java Objects.
     public void generateRecyclerView(String jsonstr){
 
         Gson gson = new Gson();
@@ -163,17 +197,47 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         recyclerView.setAdapter(recyclerAdapter);
     }
 
+    public void generateAllUsaObj(String jsonstr){
 
+        Gson gson = new Gson();
+        StateObj [] amrarr = gson.fromJson(jsonstr, StateObj[].class);
+        AllAmericanObj = amrarr[0];
+        // json request returns a json array with one value.
+
+        //#region Textviews for main USA Info
+        TextView posUSA = (TextView)findViewById(R.id.usaPositiveTestTxt);
+        TextView negUSA = (TextView)findViewById(R.id.usaNegativeTestTxt);
+        TextView recovUSA = (TextView)findViewById(R.id.usaRecoveredTxt);
+        TextView deathUSA = (TextView)findViewById(R.id.usaDeathsTxt);
+        TextView inICUUSA = (TextView)findViewById(R.id.usaInIcuCurrently);
+        TextView hospUSA = (TextView)findViewById(R.id.usaInHospital);
+        TextView totestUSA = (TextView)findViewById(R.id.usaTotalTests);
+        TextView lastUpdatedUSA = (TextView)findViewById(R.id.usaUpdated);
+        //#endregion
+        posUSA.setText(Integer.toString(AllAmericanObj.getPositive()));
+        negUSA.setText(Integer.toString(AllAmericanObj.getNegative()));
+        recovUSA.setText(Integer.toString(AllAmericanObj.getRecovered()));
+        deathUSA.setText(Integer.toString(AllAmericanObj.getDeath()));
+        inICUUSA.setText(Integer.toString(AllAmericanObj.getInIcuCurrently()));
+        hospUSA.setText(Integer.toString(AllAmericanObj.getHospitalizedCurrently()));
+        totestUSA.setText(Integer.toString(AllAmericanObj.getTotalTestResults()));
+        lastUpdatedUSA.setText(AllAmericanObj.getLastModified());
+
+    }
+  //#endregion
+
+    //#region Code incase there is an issue retrieving state data i.e No WIFI
     public void generateErrorRecyclerView(){
         StateObj errorObj = new StateObj("Error",0,"Error",0,0,0,0,0,0,0,
-                0,0,"Error",0,0,0,0,"Error");
+                0,0,"Error",0,0,0,0,"Error", "Error");
         stateList.add(errorObj);
         recyclerAdapter = new RecyclerAdapter(stateList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerAdapter);
     }
+    //#endregion
 
-
+    //#region Code from interface for click events on specific states
     @Override
     public void onItemclick(int position) {
         StateObj state = stateList.get(position);
@@ -184,19 +248,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     @Override
     public void onLongItemClick(int position) {
         // do something if the user does a long click on an item
-        // -- still finding a use for htis
+        // -- still finding a use for this
     }
-
-
-
-
-
-
-
-
-
-
-
+    //#endregion
 
 
 }

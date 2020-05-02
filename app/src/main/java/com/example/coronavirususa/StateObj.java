@@ -1,5 +1,13 @@
 package com.example.coronavirususa;
 
+
+/* StateObj - stores information from each state and modified slidghtly to store America Stats
+* Note: left majority of data in object for future developers to use for their leisure.
+*
+* */
+
+
+
 public class StateObj {
     private String state;
     private int positive;
@@ -19,11 +27,12 @@ public class StateObj {
     private int totalTestResults;
     private int posNeg;
     private String dateModified;
+    private String lastModified;
     private boolean isExpanded;
 
     public StateObj(String state, int positive, String grade, int score, int negative, int hospitalizedCurrently, int hospitalizedCumulative,
                     int inIcuCurrently, int inIcuCumulative, int onVentilatorCurrently, int onVentilatorCumulative, int recovered, String lastUpdateEt,
-                    int death, int hospitalized, int totalTestResults, int posNeg, String dateModified){
+                    int death, int hospitalized, int totalTestResults, int posNeg, String dateModified, String lastModified){
         this.state = state;
         this.positive = positive;
         this.grade=grade;
@@ -40,6 +49,7 @@ public class StateObj {
         this.death = death;
         this.hospitalized = hospitalized;
         this.totalTestResults = totalTestResults;
+        this.lastModified = lastModified;
         this.posNeg = posNeg;
         this.dateModified = dateModified;
         this.isExpanded = false;
@@ -185,9 +195,18 @@ public class StateObj {
         return dateModified;
     }
 
+    public String getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(String lastModified) {
+        this.lastModified = lastModified;
+    }
+
     public void setDateModified(String dateModified) {
         this.dateModified = dateModified;
     }
+
     public boolean getisExpanded() {
         return isExpanded;
     }

@@ -55,10 +55,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
        holder.deathText.setText(stateList.get(position).getDeath() != 0 ? Integer.toString(stateList.get(position).getDeath()): "N/A");
        holder.updateDateText.setText(stateList.get(position).getLastUpdateEt());
        String totalTests = stateList.get(position).getTotalTestResults() != 0 ? Integer.toString(stateList.get(position).getTotalTestResults()): "N/A";
-       holder.totalTestText.setText("Total Number of tests Administered: " + totalTests);
+       holder.totalTestText.setText(totalTests);
 
 
-       boolean isExpanded =stateList.get(position).getisExpanded();
+       boolean isExpanded = stateList.get(position).getisExpanded();
        holder.expandableLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE); //View.INVISIBlE will keep the space there (no good)
 
 

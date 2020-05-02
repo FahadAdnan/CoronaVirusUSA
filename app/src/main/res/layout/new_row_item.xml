@@ -32,7 +32,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/frontBackground"
+                android:textColor="@color/StateTxtColor"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <LinearLayout
@@ -56,24 +56,35 @@
                     android:layout_gravity="center"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/totalTests"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:padding="3dp"
-                        android:textSize="15dp"
-                        android:text="Total Number of tests Administered: 00000"
-                        android:fontFamily="monospace"/>
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding= "5dp">
 
+                        <TextView
+                            android:id="@+id/totalTests"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="00000"
+                            android:textStyle="bold"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Number of Tests Administered"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
@@ -84,116 +95,120 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:orientation="vertical"
                         android:padding= "5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:text="Positive: "
-                            android:textColor="@color/positiveGreen"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                         <TextView
                             android:id="@+id/PositiveTestCasesTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="N/A"
+                            android:text="000000"
+                            android:textStyle="bold"
                             android:textColor="@color/positiveGreen"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Positive Test Results"
+                            android:textColor="@color/positiveGreen"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                     </LinearLayout>
-
 
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:padding = "5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:text="Negative: "
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/negativeRed" />
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding= "5dp">
 
                         <TextView
                             android:id="@+id/NegativeTestCasesTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18dp"
-                            android:text="N/A"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/negativeRed" />
+                            android:text="000000"
+                            android:textStyle="bold"
+                            android:textColor="@color/negativeRed"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Negative Test Results"
+                            android:textColor="@color/negativeRed"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                     </LinearLayout>
-
-
                 </LinearLayout>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:orientation="horizontal">
+
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:padding = "5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:text="Recovered: "
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/positiveGreen" />
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding= "5dp">
 
                         <TextView
                             android:id="@+id/RecoveredTxt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="N/A"
+                            android:text="000000"
+                            android:textStyle="bold"
                             android:textColor="@color/positiveGreen"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Recovered Patients "
+                            android:textColor="@color/positiveGreen"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:padding = "5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:text="Deaths: "
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/negativeRed" />
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding= "5dp">
 
                         <TextView
                             android:id="@+id/deathsTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="N/A"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/negativeRed" />
+                            android:text="000000"
+                            android:textStyle="bold"
+                            android:textColor="@color/negativeRed"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Deaths"
+                            android:textColor="@color/negativeRed"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                     </LinearLayout>
-
                 </LinearLayout>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -213,22 +228,12 @@
                             android:id="@+id/UpdatedDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
+                            android:layout_marginTop="10dp"
                             android:text="X/XX XX:XX"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 </LinearLayout>
-
-
-
-
-
-
-
-
             </LinearLayout>
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

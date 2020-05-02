@@ -12,8 +12,8 @@
     <color name="backBackground">#575757</color>
     <color name="frontBackground">#949494</color>
 
-    <color name="UpdateBtnColor">#F3F3F3</color>
-    <color name="StateTxtColor">#EBEBEB</color>
+    <color name="UpdateBtnColor">#FFFFFF</color>
+    <color name="StateTxtColor">#FFFFFF</color>
 
 
     <color name="end_color">#090909</color>
